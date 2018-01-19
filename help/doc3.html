@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>GUI</title>
+
+
+</head>
+
+
+<body>
+
+<p><a href="index.html">back</a></p>
+
+<h2><a name="3">3.
+Configuration via the GUI</a></h2>
+
+<p>Synchronize can be configured
+via a GUI. You can use the GUI to execute a synchronization, or you can
+use the GUI to create a configuration file and run the synchronization
+in console mode.</p>
+
+<h3><a name="31">3.1 Menu and
+Toolbar</a></h3>
+
+<p><img style="border: 0px solid ; width: 496px; height: 427px; float: left;" src="images/gui_menu.png" alt="Menu and toolbar of Directory Synchronize">
+<br clear="left">
+
+</p>
+
+<ol>
+
+  <li>Create a <span style="font-weight: bold;">new</span>
+configuration.</li>
+
+  <li><span style="font-weight: bold;">Open</span>
+a new configuration.</li>
+
+  <li><span style="font-weight: bold;">Save</span>
+the current configuration.</li>
+
+  <li><span style="font-weight: bold;">Quit</span>
+the program.</li>
+
+  <li>Start a <span style="font-weight: bold;">preview</span>
+of the
+synchronization of the directories using this configuration.</li>
+
+  <li><span style="font-weight: bold;">Start</span>
+synchronizing
+directories using this configuration.</li>
+
+  <li><span style="font-weight: bold;">Stop</span>
+the synchronization
+after completing the current file.</li>
+
+  <li><span style="font-weight: bold;">Swap</span>
+the paths of <span style="font-weight: bold;">source and
+destination directories</span> in all
+directory definitions</li>
+
+  <li><span style="font-weight: bold;">Use Java
+"Metal" look and feel</span>;&nbsp;if deselected the
+platform look and feel will be used.<br>
+
+(due too limitations in the JRE this doesn't work on linux - yet)</li>
+
+  <li><span style="font-weight: bold;">Set</span>
+the <span style="font-weight: bold;">default path</span>
+for <span style="font-weight: bold;">configurations</span>.</li>
+
+  <li>Display <span style="font-weight: bold;">help</span>
+for "Directory
+Synchronize".</li>
+
+  <li>Display <span style="font-weight: bold;">information</span>
+about
+"Directory Synchronize".</li>
+
+  <li><span style="font-weight: bold;">Pause</span>
+the synchronization
+after completing the current file.</li>
+
+</ol>
+
+<h3><a name="32">3.2 Global
+options</a></h3>
+
+<p><img style="border: 0px solid ; width: 563px; height: 640px; float: left;" src="images/gui_global.png" alt="Global options of Directory Synchronize">
+<br clear="left">
+
+<br>
+
+</p>
+
+<ol>
+
+  <li>The <span style="font-weight: bold;">global
+logfile</span>. <br>
+
+If you want global logging, you must specify a logfile. The path must
+be given absolut, the directory must exist. The file doesn't have to
+exist yet, it will be created. If the file already exists the log will
+overwrite the file. If you don't specify a log file, logging will be
+disabled. <br>
+
+  </li>
+
+  <li><span style="font-weight: bold;">Browse</span>
+for the <span style="font-weight: bold;">global
+logfile</span> or directory. <br>
+
+  </li>
+
+  <li>The <span style="font-weight: bold;">output</span>
+of the
+synchronization.</li>
+
+  <li><span style="font-weight: bold;">Scroll</span>
+the output of the synchronization <span style="font-weight: bold;">automatically</span>.</li>
+
+  <li>The <span style="font-weight: bold;">progress</span>
+of the overall <span style="font-weight: bold;">synchronization</span>.</li>
+
+  <li>The <span style="font-weight: bold;">progress</span>
+of the
+synchronization of the current <span style="font-weight: bold;">directory</span>.</li>
+
+  <li>The <span style="font-weight: bold;">progress</span>
+of the
+synchronization of the current <span style="font-weight: bold;">file</span>.</li>
+
+</ol>
+
+<h3><a name="33">3.3
+Directories and directory paths</a></h3>
+
+<p><img style="border: 0px solid ; width: 561px; height: 640px; float: left;" src="images/gui_dirs.png" alt="Path options of Directory Synchronize">
+<br clear="left">
+
+<br>
+
+</p>
+
+<ol>
+
+  <li>"<strong>Directory
+definitions</strong>": The directory
+definitions to synchronize.</li>
+
+  <li><span style="font-weight: bold;">Select all</span>
+directory definitions.</li>
+
+  <li><span style="font-weight: bold;">Deselect all</span>
+directory definitions.</li>
+
+  <li>"<strong>Add
+new</strong>": Add a new directory
+definition to the list.</li>
+
+  <li>"<strong>Copy</strong>":
+Copy an existing directory definition.</li>
+
+  <li>"<strong>Remove</strong>":
+Remove a directory definition from the list.</li>
+
+  <li>"<strong>Up</strong>":
+Move the selected directory definition up.</li>
+
+  <li>"<strong>Down</strong>":
+Move the selected directory definition down.</li>
+
+</ol>
+
+<p><img style="border: 0px solid ; width: 560px; height: 639px; float: left;" src="images/gui_paths.png" alt="Path options of Directory Synchronize"><br clear="left">
+
+<br>
+
+</p>
+
+<ol>
+
+  <li>"<strong>Name</strong>":
+The name of this directory definition. <br>
+
+The name is only used for displaying purposes, but must be specified.<br>
+
+  </li>
+
+  <li>"<strong>Source
+directory</strong>": The source
+directory for this directory definition. <br>
+
+The path of the source directory to synchronize to a destination
+directory. Here you specify the directory with the original files.</li>
+
+  <li><span style="font-weight: bold;">Browse for "</span><span class="c1"><span style="font-weight: bold;">Source
+directory":</span> Browse for the source directory.<br>
+
+    </span></li>
+
+  <li>"<strong>Destination
+directory</strong>": The destination
+directory for this directory definition. <br>
+
+Here you specify the destination directory where to store the
+backup-files.<br>
+
+You can specify the following wildcards for time and date (case
+sensitive):
+    <dl>
+
+      <dd><span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;date&gt;</span>
+for the current date, or</dd>
+
+      <dd>&nbsp;&nbsp;<span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;DD&gt;</span>
+for the current day, &nbsp;</dd>
+
+      <dd>&nbsp; <span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;MM&gt;</span>
+for the current month,<br>
+
+&nbsp;&nbsp;<span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;YYYY&gt;</span>
+for the current year.<br>
+
+        <span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;time&gt;</span>
+for the current time, or<br>
+
+&nbsp;&nbsp;<span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;hh&gt;</span>
+for the current hour,<br>
+
+&nbsp;&nbsp;<span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;mm&gt;</span>
+for the current minute,<br>
+
+&nbsp;&nbsp;<span style="font-family: monospace; font-weight: bold; color: rgb(51, 0, 153);">&lt;ss&gt;</span>
+for the current second.</dd>
+
+    </dl>
+
+  </li>
+
+  <li><span style="font-weight: bold;">Browse&nbsp;for
+"</span><span class="c1"><span style="font-weight: bold;">Destination
+directory"</span>: Browse for the destination directory.<br>
+
+    </span></li>
+
+  <li>"<strong>Logfile</strong>":
+The logfile. <br>
+
+If you want logging for this directory, you must specify a logfile. The
+path must be given absolute. The directory and file don't have to
+exist, they will be created. If the file already exists the log will
+overwrite the file. If you don't specify a log file, separate logging
+for this directory definition will be disabled.<br>
+
+You can specify the same wildcards as for the "Destination directory".</li>
+
+  <li><span style="font-weight: bold;">Browse</span><strong style="font-weight: bold;"></strong><span style="font-weight: bold;">
+for "</span><span class="c1"><span style="font-weight: bold;">Logfile"</span>:
+Browse for the logfile or directory.<br>
+
+    </span></li>
+
+  <li>"<strong>Include
+directories</strong>": Include this directory patterns in the
+synchronization. <br>
+
+Here you can decide if only directories matching a
+specified&nbsp;pattern
+should be synchronized.<br>
+
+For example if you specify '*_new', only directories that end with
+'_new' will be processed. You can use wildcards (i.e. '?'
+and '*'). '?' means zero, or one character, '*' means zero, one, or
+more characters. You can specifiy more than one&nbsp;pattern
+seperated
+by semicolons ';'</li>
+
+  <li>"<strong>Exclude&nbsp;</strong><strong>directories</strong>":
+Exclude this directorie patterns from the synchronization. <br>
+
+Here you can decide if directories matching a
+specified&nbsp;pattern should
+NOT be synchronized. <br>
+
+  </li>
+
+  <li>"<strong>Include
+files</strong>": Include this file patterns in the
+synchronization. <br>
+
+Here you can decide if only files matching a specified file pattern
+should be synchronized.<br>
+
+For example if you specify '*.txt' only files
+that end with '.txt' will be processed. You can use wildcards (i.e. '?'
+and '*'). '?' means zero, or one character, '*' means zero, one, or
+more characters. You can specifiy more than one file pattern seperated
+by semicolons ';'. <br>
+
+  </li>
+
+  <li>"<strong>Exclude files</strong>": Exclude this
+file patterns from the synchronization. <br>
+
+Here you can decide if files matching a specified file pattern should
+NOT be synchronized.</li>
+
+</ol>
+
+<h3><a name="34">3.4 Directory
+options</a></h3>
+
+<p><img style="border: 0px solid ; width: 561px; height: 641px; float: left;" src="images/gui_options.png" alt="Directory options of Directory Synchronize">
+<br clear="left">
+
+<br>
+
+</p>
+
+<ol>
+
+  <li>"<span style="font-weight: bold;">A</span><strong>ll</strong>":
+Copies all files and
+directories. <br>
+
+If a file already exists in the destination directory it will always be
+overwritten with that one from the source directory. If you specify
+this option, all other copy options will be ignored (you already copied
+all files, what do you want more?).</li>
+
+  <li>"<strong>New</strong>": Copies only new (not
+existing in destination directory) files and directories. <br>
+
+Files that exist in the source directory but not in the destination
+directory will be copied to the destination directory.</li>
+
+  <li>"<strong>Larger</strong>": Copies only larger
+files and directories. <br>
+
+If there already is a file with the same name in the destination
+directory, it will only be overwritten with the file from the source
+directory if its size is smaller than the size of the original file in
+the source directory.</li>
+
+  <li>"<strong>Modified</strong>": Copies only
+modified files and directories. <br>
+
+If there already is a file with the same name in the destination
+directory, it will only be overwritten with the file from the source
+directory if its modified-date is older than the modified-date of the
+original file in the source directory.</li>
+
+  <li>"<strong>Only larger and modified</strong>":
+Copies only larger AND modified files and directories. <br>
+
+If there already is a file with the same name in the destination
+directory, it will only be overwritten with the file from the source
+directory if its size is smaller and its modified-date is older than
+the size and date of the original file in the source directory. <br>
+
+If you specify the option 'Copy larger' or 'Copy modified', this option
+will be ignored (you already copied this files).<br>
+
+  </li>
+
+  <li>"<strong>Include
+subfolders</strong>": Includes
+subfolders in this synchronization. <br>
+
+Here you can decide whether you want to synchronize the content of the
+source directory including subfolders or not.</li>
+
+  <li>"<strong>Verify synchronized files</strong>": <br>
+
+If this box is checked then after a file has been copied checksums of
+the source and destination file are calculated and compared. If the
+checksums don't match an "Verify error" will be reported. <br>
+
+    <br>
+
+  </li>
+
+  <li>"<strong>Delete
+files</strong>": Delete files not
+existing in the source directory from the destination directory. <br>
+
+Files that have been deleted in the source directory, but still exist
+in the destination directory will be deleted in the destination
+directory.</li>
+
+  <li>"<strong>Delete
+directories</strong>": Delete
+directories not existing in the source directory from the destination
+directory. <br>
+
+Directories that have been deleted in the source directory, but still
+exist in the destination directory will be deleted in the destination
+directory.<br>
+
+  </li>
+
+  <li>"<span style="font-weight: bold;">Copy</span><strong>
+to all directory definitions</strong>": Copies the current
+options to all directory definitions.</li>
+
+  <li>"<span style="font-weight: bold;">Copy</span><strong>
+to enabled directory definitions</strong>": Copies the current
+options only to the enabled directory definitions.</li>
+
+</ol>
+
+<br>
+
+<h3><a name="35">3.5 Advanced
+options</a></h3>
+
+<p><img style="border: 0px solid ; width: 563px; height: 641px; float: left;" src="images/gui_advanced.png" alt="Directory options of Directory Synchronize">
+<br clear="left">
+
+</p>
+
+<p style="font-weight: bold; color: rgb(255, 102, 0);">If
+you don't know what this advanced options are about -
+chances are
+good that you don't need them.</p>
+
+<p><span style="font-weight: bold;">Handling of
+timestamp related problems</span><br>
+
+Some filesystems don't store timestamps accurately (<i>e.g.
+FAT</i>) and it is possible that
+problems with the option "Modified" arise (<i>e.g.
+FAT always forces the timestamp down to even seconds; if you copy a
+file with a source timestamp of "12:05:01" to FAT it will be stored
+with a destination timestamp of "12:05:00". The next time you
+synchronize this file with the "Copy modified" option it will be</i>
+<u>copied
+again</u><i>
+because the source timestamp is newer than the destination timestamp</i>).
+</p>
+
+<ol>
+
+  <li><span style="font-weight: bold;"></span>"<strong>Write
+timestamps back to source files</strong>":&nbsp; <br>
+
+If&nbsp; this box is checked then after a file has been copied the
+destination timestamp is written back to the source file (<i>the
+timestamp of "12:05:00" would be written back to the source file. The
+next time you synchronize this file with the "Modified" option it
+will <u>not</u>
+be copied again because both files have the same timestamp</i>). <br>
+
+    <i>Doesn't work if the source file is write protected.<br>
+
+    </i></li>
+
+  <li>"<span style="font-weight: bold;">Specify max
+seconds between timestamps to be equal</span>":<br>
+
+If&nbsp; this box is checked then timestamps that differ x seconds
+are treated as equal (<i>the
+timestamp of "12:05:00" would be treated as equal to the timestamp
+"12:05:01".&nbsp;If&nbsp; you synchronize this file with the
+"Modified" option it
+will <u>not</u>
+be copied&nbsp;because both files have an equal timestamp</i>).
+    <br>
+
+    <i>If this value is chosen too big files that are actually
+different might be falsely considered to be identical.<br>
+
+    </i><br>
+
+  </li>
+
+  <li>"<span style="font-weight: bold;">Copy
+symbolic links as files</span>" or "<b>Skip symbolic links</b>":
+Symbolic links are copied as files otherwise&nbsp;symbolic
+links are skipped while copying.<br>
+
+If you already copied symbolic links and select&nbsp;later to skip
+symbolic links the
+symbolic links that have been copied to the target directories as files
+will be deleted in the target directories.<br>
+
+    <i>Only applies if the source filesystem can handle symbolic
+links
+(UNIX, Linux, MacOS).<br>
+
+    </i></li>
+
+  <li>"<span style="font-weight: bold;">Reset to
+default</span>": Reset the advanced options to their default
+values.<i><br>
+
+    </i></li>
+
+</ol>
+
+<p><a href="index.html">back</a></p>
+
+</body>
+</html>

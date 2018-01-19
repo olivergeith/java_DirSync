@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>CommandLine</title>
+</head>
+<body>
+    <p><a href="index.html">back</a></p>
+<h2><a name="2">2. Command line options</a></h2>
+
+
+<p style="font-weight: bold; color: rgb(204, 102, 0);"><big>
+Command line options start with a slash "<code>/</code>" on Windows and with a minus
+"<code>-</code>" on all other operating systems.</big></p>
+
+
+<p style="color: rgb(0, 0, 102); font-weight: bold;"><code>Usage: 'dirsync [-help] [-usage] [-sync ][-preview] [-quit] [-nogui]
+&lt;configfile&gt;'</code></p>
+
+
+<p><code><span style="color: rgb(0, 0, 102); font-weight: bold;">&nbsp; -help</span>&nbsp;&nbsp;&nbsp;&nbsp;
+</code>Display help on homepage, contact, and license.<code><br>
+
+<span style="font-weight: bold; color: rgb(0, 0, 102);">
+&nbsp; -usage</span>&nbsp;&nbsp;&nbsp; </code>Displays this screen.<code><br>
+
+</code><code><span style="font-weight: bold; color: rgb(0, 0, 102);">
+&nbsp; -sync</span> &nbsp; &nbsp; </code>Starts a synchronization if a configuration file is specified.<code><br>
+
+</code><code><span style="color: rgb(0, 0, 102); font-weight: bold;">&nbsp; -preview</span>&nbsp; </code>Starts a preview rather than a
+synchronization if a configuration&nbsp;file is specified.<code><br>
+
+<span style="font-weight: bold; color: rgb(0, 0, 102);">
+&nbsp; -quit</span>&nbsp;&nbsp;&nbsp;&nbsp; </code>Quits the
+program after the preview or the synchronization.<code><br>
+
+<span style="font-weight: bold; color: rgb(0, 0, 102);">
+&nbsp; -nogui</span>&nbsp;&nbsp;&nbsp; </code>Start
+DirectorySynchronize in console mode and start synchronization (only useful if a configuration file is being specified).<br>
+
+
+</p>
+
+
+<h3><a name="21">2.1 Examples</a></h3>
+
+<ul>
+  <li><code></code>Start in GUI mode:<code><br>
+
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(0, 0, 102);">dirsync</span><br>
+
+    </code></li>
+  <li><code></code>Start synchronization in GUI mode and quit&nbsp;afterwards:<code><br>
+
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(0, 0, 102);">dirsync -sync -quit &lt;configfile&gt;<br>
+
+    </span></code>&nbsp;&nbsp;on Windows:<code><span style="font-weight: bold; color: rgb(0, 0, 102);"><br>
+
+    </span></code><code>&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(0, 0, 102);">dirsync /sync /quit &lt;configfile&gt;</span></code><br>
+
+    <code></code></li>
+  <li><code>
+    </code>Start synchronization in command line mode:<code><br>
+
+&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(0, 0, 102);">dirsync -nogui
+&lt;configfile&gt;<br>
+
+    </span></code>&nbsp;&nbsp;on Windows:<code><span style="font-weight: bold; color: rgb(0, 0, 102);"><br>
+
+    </span></code><code>&nbsp;&nbsp;<span style="font-weight: bold; color: rgb(0, 0, 102);">dirsync /nogui
+&lt;configfile&gt;</span></code>
+  </li>
+</ul>
+
+
+
+
+    <p><a href="index.html">back</a></p>
+</body>
+</html>

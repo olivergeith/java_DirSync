@@ -1,0 +1,743 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+
+  
+  <title>XML</title>
+</head>
+
+
+<body>
+
+    
+<p><a href="index.html">back</a></p>
+
+<h2><a name="4">4.
+Configuration via a configuration file</a></h2>
+
+
+
+<p>Synchronize can be configured
+via a XML config file. You can write this config file by hand - or use
+the GUI to create one. The program expects the path to this config file
+as an attribute when it is started. The config file starts with a XML
+prolog:</p>
+
+
+
+<pre style="font-family: monospace; font-weight: bold; color: blue;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br></pre>
+
+
+
+<p>Now follows the DTD (a
+DocumentTypeDefinition defines how a XML file should look; which
+elements and which attributes can be used. It has nothing to do with
+the configuration of Synchronize; it defines how a valid config file
+for Synchronize has to be defined):</p>
+
+
+
+<pre style="font-family: monospace; font-weight: bold; color: blue;">&lt;!DOCTYPE dirsync [<br><br>&lt;!ELEMENT dirsync (directory*)&gt;<br>&lt;!ATTLIST dirsync logfile CDATA ''&gt;<br>&lt;!ATTLIST dirsync timestampwriteback (true|false) 'false'&gt;<br>&lt;!ATTLIST dirsync timestampdiff CDATA '0'&gt;<br>&lt;!ATTLIST dirsync skiplinks (true|false) 'false'&gt;<br><br>&lt;!ELEMENT directory EMPTY&gt;<br>&lt;!ATTLIST directory name CDATA #REQUIRED&gt;<br>&lt;!ATTLIST directory src CDATA #REQUIRED&gt;<br>&lt;!ATTLIST directory dst CDATA #REQUIRED&gt;<br>&lt;!ATTLIST directory withsubfolders (true|false) 'false'&gt;<br>&lt;!ATTLIST directory verify (true|false) 'false'&gt;<br>&lt;!ATTLIST directory include CDATA ''&gt;<br>&lt;!ATTLIST directory exclude CDATA ''&gt;<br>&lt;!ATTLIST directory dirinclude CDATA ''&gt;<br>&lt;!ATTLIST directory direxclude CDATA ''&gt;<br>&lt;!ATTLIST directory logfile CDATA ''&gt;<br>&lt;!ATTLIST directory copyall (true|false) 'false'&gt;<br>&lt;!ATTLIST directory copylarger (true|false) 'false'&gt;<br>&lt;!ATTLIST directory copymodified (true|false) 'false'&gt;<br>&lt;!ATTLIST directory copylargermodified (true|false) 'false'&gt;<br>&lt;!ATTLIST directory copynew (true|false) 'false'&gt;<br>&lt;!ATTLIST directory delfiles (true|false) 'false'&gt;<br>&lt;!ATTLIST directory deldirs (true|false) 'false'&gt;<br>]&gt;<br></pre>
+
+
+
+<p>As you can see from the DTD now
+follows one <strong>&lt;synchronize&gt;</strong>
+element containing none, one or more <strong>&lt;directory&gt;</strong>
+elements:</p>
+
+
+
+<pre style="font-family: monospace; font-weight: bold; color: blue;">&lt;synchronize<br> logfile="D:\Desktop\work\global.log" <br> timestampwriteback="false" <br> timestampdiff='0' <br> skiplinks="false"<br>&gt;<br> &lt;directory<br> name="Dokumentation"<br> src="L:\Desktop\Dateien\- Dokumentation"<br> dst="D:\Desktop\Dateien\- Dokumentation"<br> withsubfolders="true"<br> verify="false"<br> include="*"<br> exclude=""<br> dirinclude="*"<br>&nbsp;direxclude=""<br> logfile="D:\Desktop\Dateien\getDokumentation.log"<br> copyall="false"<br> copynew="true"<br> copylarger="true"<br> copymodified="true"<br> copylargermodified="false"<br> delfiles="false"<br> deldirs="false"<br> /&gt;<br> ...<br>&lt;/synchronize&gt;<br></pre>
+
+
+
+<h3><a name="41">4.1
+"&lt;synchronize&gt;" Element</a></h3>
+
+
+
+<ul>
+
+  <li>
+    
+    
+    <p>The '<strong>logfile</strong>'-attribute: <br>
+
+
+
+A valid attribute value is a path to a file or an empty value (""). <br>
+
+
+
+If you want logging, you must specify a logfile. The path must be given
+absolut, the directory must exist. The file doesn't have to exist yet,
+it will be created. If the file already exists the log will overwrite
+the file. <br>
+
+
+
+This attribute is optional, if you don't specify a log file, logging
+will be disabled.&nbsp;</p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>"<strong>timestampfix</strong>":
+Workaround for the problem that some filesystems don't store timestamps
+accurately.<br>
+
+
+
+Some filesystems don't store timestamps accurately (<i>e.g.
+FAT</i>) and it is possible that
+problems with the option "Copy modified" arise (<i>e.g.
+FAT always forces the timestamp down to even seconds; if you copy a
+file with a source timestamp of "12:05:01" to FAT it will be stored
+with a destination timestamp of "12:05:00". The next time you
+synchronize this file with the "Copy modified" option it will be <u>copied
+again</u> because the source
+timestamp is newer than the destination timestamp</i>). <br>
+
+
+
+If&nbsp; this option is set to "true" then after a file has been
+copied the
+destination timestamp is written back to the source file (<i>the
+timestamp of "12:05:00" would be written back to the source file. The
+next time you synchronize this file with the "Copy modified" option it
+will <u>not</u>
+be copied again because both files have the same timestamp</i>). <br>
+
+
+
+This doesn't work if the source file is write protected. <br>
+
+
+
+This attribute is optional, if the attribute isn't specified the
+destination timestamp will no be written back to the source
+file.&nbsp;</p>
+
+
+
+  </li>
+
+  <li>"<span style="font-weight: bold;">timestampdiff</span>":
+    <br>
+
+
+
+If&nbsp; this value is set&nbsp;then timestamps that differ x
+seconds are treated as equal (<i>the
+timestamp of "12:05:00" would be treated as equal to the timestamp
+"12:05:01".&nbsp;If&nbsp; you synchronize this file with the
+"Modified" option it
+will <u>not</u>
+be copied&nbsp;because both files have an equal timestamp</i>).
+    <br>
+
+
+
+    <i>If this value is chosen too big files that are actually
+different might be falsely considered to be identical.<br>
+
+
+
+    </i></li>
+
+  <li>
+    
+    
+    <p>"<b>skiplinks</b>": Skips symbolic links while
+copying; otherwise
+symbolic links are copied as files.<br>
+
+
+
+If you already copied symbolic links and select this option later the
+symbolic links that have been copied to the target directories as files
+will be deleted in the target directories.<br>
+
+
+
+Only applies if the source filesystem can handle symbolic links (UNIX,
+Linux, MacOS).<br>
+
+
+
+This attribute is optional, if the attribute isn't
+specified
+symbolic links will be copied as files.</p>
+
+
+
+  </li>
+
+</ul>
+
+
+
+<h3><a name="42">4.2
+"&lt;directory&gt;" Elements</a></h3>
+
+
+
+<p>Now we can start with the
+single directories:</p>
+
+
+
+<h4><a name="421">4.2.1 Paths</a></h4>
+
+
+
+<ul>
+
+  <li>
+    
+    
+    <p>The '<strong>name</strong>'-attribute: <br>
+
+
+
+A valid attribute value is any String. <br>
+
+
+
+A name for this directory synchronization. The name is only used for
+displaying purposes, but must be specified. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>src</strong>'-attribute: <br>
+
+
+
+A valid attribute value is the path to an existing directory. <br>
+
+
+
+With this attribute you define the path of the source directory to
+synchronize to a destination directory. Here you specify the directory
+with the original files. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>dst</strong>'-attribute: <br>
+
+
+
+A valid attribute value is the path to an existing directory. <br>
+
+
+
+Here you specify the destination directory where to store the
+backup-files.<br>
+See section "GUI" for wildcards you can specify. </p>
+
+
+
+  </li>
+
+</ul>
+
+
+
+<ul>
+
+  <li>
+    
+    
+    <p>The '<strong>include</strong>'-attribute: <br>
+
+
+
+A valid attribute value is any string of file patterns separated by
+semicolons. <br>
+
+
+
+Here you can decide if only files matching a specified file pattern
+should be synchronized. <br>
+
+
+
+For example if you set '<em>*.txt</em>'
+only files that end with '.txt' will be processed. <br>
+
+
+
+You can use wildcards (i.e. '?' and '*'). '?' means zero, or one
+character, '*' means zero, one, or more characters. <br>
+
+
+
+You can specifiy more than one file pattern seperated by semicolons
+';'. <br>
+
+
+
+This attribute is optional, if the attribute isn't specified all files
+will be processed. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>exclude</strong>'-attribute: <br>
+
+
+
+A valid attribute value is any string of file patterns separated by
+semicolons. <br>
+
+
+
+Here you can decide if files matching a specified file pattern should
+NOT be synchronized. <br>
+
+
+
+For example if you set '<em>*.txt</em>'
+only files that do NOT end with '.txt' will be processed. <br>
+
+
+
+You can use wildcards (i.e. '?' and '*'). '?' means zero, or one
+character, '*' means zero, one, or more characters. <br>
+
+
+
+You can specifiy more than one file pattern seperated by semicolons
+';'. <br>
+
+
+
+This attribute is optional, if the attribute isn't specified all files
+will be processed. </p>
+
+
+
+  </li>
+
+</ul>
+
+
+
+<ul>
+
+  <li>
+    
+    
+    <p>The '<span style="font-weight: bold;">dir</span><strong>include</strong>'-attribute:
+    <br>
+
+
+
+A valid attribute value is any string of file patterns separated by
+semicolons. <br>
+
+
+
+Here you can decide if only files matching a specified file pattern
+should be synchronized. <br>
+
+
+
+For example if you set '<em>*.txt</em>'
+only files that end with '.txt' will be processed. <br>
+
+
+
+You can use wildcards (i.e. '?' and '*'). '?' means zero, or one
+character, '*' means zero, one, or more characters. <br>
+
+
+
+You can specifiy more than one file pattern seperated by semicolons
+';'. <br>
+
+
+
+This attribute is optional, if the attribute isn't specified all files
+will be processed. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>direxclude</strong>'-attribute: <br>
+
+
+
+A valid attribute value is any string of file patterns separated by
+semicolons. <br>
+
+
+
+Here you can decide if files matching a specified file pattern should
+NOT be synchronized. <br>
+
+
+
+For example if you set '<em>*.txt</em>'
+only files that do NOT end with '.txt' will be processed. <br>
+
+
+
+You can use wildcards (i.e. '?' and '*'). '?' means zero, or one
+character, '*' means zero, one, or more characters. <br>
+
+
+
+You can specifiy more than one file pattern seperated by semicolons
+';'. <br>
+
+
+
+This attribute is optional, if the attribute isn't specified all files
+will be processed. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>logfile</strong>'-attribute: <br>
+
+
+
+A valid attribute value is a valid path to a file or an empty value
+(""). <br>
+
+
+
+If you want logging for this directory, you must specify a logfile. The
+path must be given absolute. The directory and file don't have to
+exist, they will be created. If the file already exists the log will
+overwrite the file. If you don't specify a log file, logging for this
+directory will be disabled. <br>
+See section "GUI" for wildcards you can specify.<br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+</ul>
+
+
+
+<h4><a name="422">4.2.2 "What
+to synchronize" options</a></h4>
+
+
+
+<ul>
+
+  <li>
+    
+    
+    <p>The '<strong>copyall</strong>'-attribute: <br>
+
+
+
+Valid attribute values are '<em>true</em>'
+or '<em>false</em>'. <br>
+
+
+
+If a file already exists in the destination directory '<em>dst</em>'
+it will always be overwritten with that one from the source directory '<em>src</em>'.
+    <br>
+
+
+
+If you set '<em>copyall</em>'
+to '<em>true</em>',
+all other copy options will be ignored (you already copied all files,
+what do you want more?) <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>copynew</strong>'-attribute: <br>
+
+
+
+Valid attribute values are '<em>true</em>'
+or '<em>false</em>'. <br>
+
+
+
+Files that exist in the source directory '<em>src</em>'
+but not in the destination directory '<em>dst</em>'
+will be copied to the destination directory '<em>dst</em>'.
+    <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>copylarger</strong>'-attribute: <br>
+
+
+
+Valid attribute values are '<em>true</em>'
+or '<em>false</em>'. <br>
+
+
+
+If there already is a file with the same name in the destination
+directory '<em>dst</em>',
+it will only be overwritten with the file from the source directory '<em>src</em>'
+if its size is smaller than the size of the original file in the source
+directory '<em>src</em>'. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>copymodified</strong>'-attribute:
+    <br>
+
+
+
+Valid attribute values are '<em>true</em>'
+or '<em>false</em>'. <br>
+
+
+
+If there already is a file with the same name in the destination
+directory '<em>dst</em>',
+it will only be overwritten with the file from the source directory '<em>src</em>'
+if its modified-date is older than the modified-date of the original
+file in the source directory '<em>src</em>'. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>copylargermodified</strong>'-attribute:
+    <br>
+
+
+
+Valid attribute values are '<em>true</em>'
+or '<em>false</em>'. <br>
+
+
+
+If there already is a file with the same name in the destination
+directory '<em>dst</em>',
+it will only be overwritten with the file from the source directory '<em>src</em>'
+if its size is smaller <strong>and</strong>
+its modified-date is older than the size and date of the original file
+in the source directory '<em>src</em>'. <br>
+
+
+
+If you set '<em>copylarger</em>'
+or '<em>copymodified</em>'
+to '<em>true</em>',
+'copylargermodified' will be ignored (you already copied these files) <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+</ul>
+
+
+
+<h4><a name="423">4.2.3 "How
+to synchronize" options</a></h4>
+
+
+
+<ul>
+
+  <li>"<strong>With
+subfolders</strong>": Includes
+subfolders in this synchronization. <br>
+
+
+
+Here you can decide whether you want to synchronize the content of the
+source directory including subfolders or not. <br>
+
+
+
+This attribute is optional, if the attribute isn't specified no
+subfolders will be synchronized. <br>
+
+
+
+    <br>
+
+
+
+  </li>
+
+  <li>"<strong>Verify</strong>":
+Verify copied files. <br>
+
+
+
+If this box is checked then after a file has been copied checksums of
+the source and destination file are calculated and compared. If the
+checksums don't match an "Verify error" will be reported. <br>
+
+
+
+This attribute is optional, if the attribute isn't specified no
+verification will be done. <br>
+
+
+
+  </li>
+
+</ul>
+
+
+
+<h4><a name="424">4.2.4 Delete
+options</a></h4>
+
+
+
+<ul>
+
+  <li>
+    
+    
+    <p>The '<strong>delfiles</strong>'-attribute: <br>
+
+
+
+Valid attribute values are '<em>true</em>'
+or '<em>false</em>'. <br>
+
+
+
+Files that have been deleted in the source directory '<em>src</em>',
+but still exist in the destination directory '<em>dst</em>'
+will be deleted in the destination directory '<em>dst</em>'
+if this attribute is set to <em>'true'</em>. <br>
+
+
+
+    </p>
+
+
+
+  </li>
+
+  <li>
+    
+    
+    <p>The '<strong>deldirs</strong>'-attribute: <br>
+
+
+
+Valid attribute values are '<em>true</em>'
+or '<em>false</em>'. <br>
+
+
+
+Directories that have been deleted in the source directory '<em>src</em>',
+but still exist in the destination directory '<em>dst</em>'
+will be deleted in the destination directory '<em>dst</em>'
+if this attribute is set to <em>'true'</em>.</p>
+
+  </li>
+
+</ul>
+
+    
+<p><a href="index.html">back</a></p>
+
+</body>
+</html>
